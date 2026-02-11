@@ -5,6 +5,7 @@ import {useAuthContext} from "react-oauth2-code-pkce";
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import type {BasketItem, Item} from "../Types";
+import {AVAILABLE_ITEMS} from "../ApiRoutes.tsx";
 
 const Dashboard = () => {
     const {token} = useAuthContext();
@@ -55,7 +56,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchGoods = async () => {
             try {
-                const response = await clientApi.get('/api/v1/items/all/available');
+                const response = await clientApi.get(AVAILABLE_ITEMS);
                 setGoods(response.data.slice(0, 5));
                 setError(null);
             } catch (err) {

@@ -4,6 +4,7 @@ import {Alert, Container} from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import type {UserInfo} from "../Types.tsx";
+import {CURR_USER_FULL} from "../ApiRoutes.tsx";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Profile = () => {
     const [userData, setUserData] = useState<UserInfo|null>(null);
 
     useEffect(() => {
-        clientApi.get("/api/v1/users/current/full").then((res) => {
+        clientApi.get(CURR_USER_FULL).then((res) => {
             setUserData(res.data);
             if (!res.data) {
                 throw new Error("User data retrieval error");

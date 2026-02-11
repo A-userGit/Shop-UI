@@ -2,6 +2,7 @@ import {useAuthContext} from "react-oauth2-code-pkce";
 import {useEffect, useState} from "react";
 import apiClient from "./AxiosApi";
 import type {SimpleUser} from "../Types.tsx";
+import {CURR_USER} from "../ApiRoutes.tsx";
 
 const UserOptions = () => {
     const { token } = useAuthContext();
@@ -10,7 +11,7 @@ const UserOptions = () => {
 
     useEffect(() => {
         if (token) {
-            apiClient.get("/api/v1/users/current").then((res) => {
+            apiClient.get(CURR_USER).then((res) => {
                 setApiData(res.data);
                 if(!res.data){
                     throw new Error("User data retrieval error");

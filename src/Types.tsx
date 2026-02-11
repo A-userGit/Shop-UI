@@ -45,3 +45,13 @@ export interface UserInfo{
     birthDate: Date;
     email: string;
 }
+
+export interface SingnUpState{
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+    birthDate: string;
+    error: string;
+    return: boolean;
+}

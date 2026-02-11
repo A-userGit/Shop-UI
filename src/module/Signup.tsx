@@ -1,6 +1,8 @@
 import {Component} from "react";
 import {Navigate} from "react-router-dom";
 import apiClient from "./AxiosApi";
+import type {SingnUpState} from "../Types.tsx";
+import {SIGNUP} from "../ApiRoutes.tsx";
 
 
 const formatToDMY = (dateString:string|null) => {
@@ -9,8 +11,8 @@ const formatToDMY = (dateString:string|null) => {
     return `${day}-${month}-${year}`;
 };
 
-export default class SignUp extends Component {
-    constructor(props) {
+export default class SignUp extends Component<unknown, SingnUpState> {
+    constructor(props:string) {
         super(props);
 
         this.state = {
@@ -24,7 +26,7 @@ export default class SignUp extends Component {
         };
     }
 
-    handleSubmit = async (e) => {
+    handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const request = {
             name : this.state.name,
@@ -36,11 +38,15 @@ export default class SignUp extends Component {
         const userDetails = JSON.stringify(request);
         try {
             this.setState({ error: ""});
-            await apiClient.post('/api/v1/access/signup/', userDetails);
+            await apiClient.post(SIGNUP, userDetails);
             this.setState({return: true});
         }catch (error){
-            console.log(error.message);
-            this.setState({ error: error.message});
+            if(error instanceof Error) {
+                console.log(error.message);
+                this.setState({error: error.message});
+            }else{
+                console.log(error);
+            }
             this.render();
         }
     };

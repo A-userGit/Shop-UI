@@ -4,6 +4,7 @@ import {Alert, Container, ListGroup, ListGroupItem} from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import type {BasketItem, OrderCreationData, OrderItem} from "../Types.tsx";
+import {CREATE_ORDER} from "../ApiRoutes.tsx";
 
 const Cart = () => {
     const [basket, setBasket] = useState<BasketItem[]>([]);
@@ -27,7 +28,7 @@ const Cart = () => {
         }
         createOrderData.email = email;
         try {
-            clientApi.post("/api/v1/orders/create", JSON.stringify(createOrderData));
+            clientApi.post(CREATE_ORDER, JSON.stringify(createOrderData));
             setError(null);
             navigate("/orders");
         } catch (err) {

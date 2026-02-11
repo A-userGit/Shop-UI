@@ -1,6 +1,6 @@
 import axios, {type InternalAxiosRequestConfig} from "axios";
 
-const BASE_URL = 'http://localhost:8085';
+const BASE_URL = import.meta.env.VITE_BASE_API_URI;
 const REQUEST_TIMEOUT = 1000
 
 const apiClient = axios.create({

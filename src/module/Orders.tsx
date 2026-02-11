@@ -4,6 +4,7 @@ import {ListGroup, Container, Alert, Spinner, ListGroupItem} from 'react-bootstr
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
 import type {OrderData} from "../Types.tsx";
+import {USER_ORDERS} from "../ApiRoutes.tsx";
 
 const Orders = () => {
     const [orders, setOrders] = useState<OrderData[]>([]);
@@ -14,7 +15,7 @@ const Orders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await clientApi.get('/api/v1/orders/user/current');
+                const response = await clientApi.get(USER_ORDERS);
                 setOrders(response.data.slice(0, 5));
                 setError(null);
             } catch (err) {

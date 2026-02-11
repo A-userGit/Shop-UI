@@ -13,9 +13,9 @@ import Profile from "./module/Profile.tsx";
 const authConfig = {
 
     clientId: 'frontend-ui-client',
-    authorizationEndpoint: 'http://localhost:8082/oauth2/authorize',
-    tokenEndpoint: 'http://localhost:8082/oauth2/token',
-    redirectUri: 'http://localhost:5173',
+    authorizationEndpoint: import.meta.env.VITE_AUTH_ENDPOINT,
+    tokenEndpoint: import.meta.env.VITE_AUTH_TOKEN_ENDPOINT,
+    redirectUri: import.meta.env.VITE_REDIRECT_URI,
     scope: 'openid profile email offline_access',
     autoLogin: false,
     onRefreshTokenExpire: (event: TRefreshTokenExpiredEvent) => event.logIn(undefined, undefined, "popup"),
