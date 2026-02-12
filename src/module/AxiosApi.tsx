@@ -1,7 +1,8 @@
 import axios, {type InternalAxiosRequestConfig} from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_API_URI;
+//const BASE_URL = import.meta.env.VITE_BASE_API_URI;
 const REQUEST_TIMEOUT = 1000
+const BASE_URL ="http://gateway-service";
 
 const apiClient = axios.create({
     baseURL: BASE_URL,

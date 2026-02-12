@@ -53,6 +53,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: frontend-ui
+                name: shop-ui
                 port:
                   number: 80
